@@ -1,0 +1,14 @@
+.padding5{padding:5px}
+.padding10{padding:10px}
+.padding20{padding:20px}
+.padding30{padding:30px}
+.headings{margin-top:0;}
+
+.text-block{display:block;float:left;width:100%;margin-bottom:50px;}
+.text-block h2{margin-top:0;}
+.img-right{margin-left:100px;}
+.img-left{margin-right:100px;}
+
+.centered{display: block;margin: 0 auto;}
+
+.white{color:#fff;}

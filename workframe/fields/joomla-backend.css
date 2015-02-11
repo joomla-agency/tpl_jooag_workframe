@@ -1,0 +1,26 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100italic,400italic,500,500italic,700,700italic,900,900italic);
+.tutorial .alert-info {border: 3px dashed #5BC0DE;}
+.side .tutorial{min-height:250px;}
+.equalHeight .module{margin-bottom:21px;}
+.btn-noradius{border-radius:0;}
+.btn-pink{background-color:#ff1493;color:#fff;}
+#instantclick-bar {background:#dd3333;}
+.right-position img, .left-position img{width:100%;height:auto;}
+
+/*Choosen*/
+.adminlist td input{width:80px !important;}
+.adminlist td .chzn-container-single{width:95px !important;}
+.adminlist td.td7 .chzn-container-multi{width:250px !important;}
+.adminlist td .chzn-container-multi{width:250px !important;}
+
+/*Styling*/
+.tab-pane .control-group{}
+.tab-pane .control-group:hover .controls{}
+.spacer span.text label{font-size:22px;font-weight:normal;text-transform:uppercase;font-family: 'Roboto', sans-serif;border-bottom:2px solid #0077CC;min-width:400px;padding:20px 0 3px 0;margin-bottom:0;}
+.spacer span.text label span{color:#0077CC;}
+.form-horizontal .control-group {
+  margin-bottom: 10px !important;
+}
+
+#jform_params_googlefonts_container .td1 input{width:500px !important;}
+#jform_params_googlefonts_container .td2 input{width:250px !important;}

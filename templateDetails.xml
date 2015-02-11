@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 3.3//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/3.3/template-install.dtd">
+<extension version="3.3.0" type="template" method="upgrade" client="site">
+	<name>joomla_agency3x</name>
+	<creationDate>11.06.2014</creationDate>
+	<author>Ufuk Avcu</author>
+	<authorEmail>info@joomla-agentur.de</authorEmail>
+	<authorUrl>http://www.joomla-agentur.de</authorUrl>
+	<copyright>Copyright 2014 JooAg.de</copyright>
+	<license>GNU/GPL</license>
+	<version>3.3.0</version>
+	<description>Joomla 3.x Template - Workframe
+	<![CDATA[
+	<div style="width: 450px;">
+		<img src="../templates/joomla_agency3x/template_preview.png" align="left" style="padding:10px;background:#232C3A;margin-bottom:10px;" />
+		<div style="width: 225px;float:left;">
+			<p><strong>The Joomla Agency</strong><br />
+			A new a lightweight Joomla 3 Template with a really cool new approach.<br />
+			<ul>
+			<li>Use your own Module names!</li>
+			<li>Define your own Module positions...</li>
+			<li>as many as you want!</li>
+			<li>Etensive use of the Joomla! API.</li>
+			<li>More than 50 Template settings!</li>
+			<li>And much more...</li>
+			</ul>
+			<a href="www.joomla-agentur.de">www.joomla-agentur.de</a></br>
+			<a href="www.joomla-agency.de">www.joomla-agency.de</a>
+			</p>
+		</div>
+	</div>
+	]]>
+</description>
+
+<files>
+	<folder>css</folder>
+	<folder>html</folder>
+	<folder>img</folder>
+	<folder>js</folder>
+	<folder>language</folder>
+	<folder>workframe</folder>
+	<filename>error.php</filename>
+	<filename>index.php</filename>
+	<filename>template_preview.png</filename>
+	<filename>template_thumbnail.png</filename>
+	<filename>templateDetails.xml</filename>
+</files>
+	
+<languages folder="language">		
+	<language tag="en-GB">en-GB/en-GB.tpl_joomla_agency3x.ini</language>
+	<language tag="en-GB">en-GB/en-GB.tpl_joomla_agency3x.sys.ini</language>
+</languages>
+	
+<positions>
+	<position>topmenu</position>
+	<position>logo</position>
+	<position>menu</position>
+	<position>subnav</position>
+	<position>slideshow</position>
+	<position>header</position>
+	<position>top</position>
+	<position>left</position>
+	<position>right</position>
+	<position>component-top</position>	
+	<position>component-bottom</position>	
+	<position>bottom</position>
+	<position>footer</position>
+	<position>copyright</position>
+</positions>
+	
+<config>
+	<fields name="params" addfieldpath="templates/joomla_agency3x/workframe/fields">			
+		<fieldset name="LAYOUT">
+			<field name="jooagsystem" type="jooag" />
+			<field name="positionsimg" type="positionsimg" />
+			<field name="Component Area" type="spacer" class="text" label="Component &lt;span&gt;Area&lt;/span&gt;"/>				
+			<field name="colPrefixCompoenent" type="modcolprefix" default="col-sm-" label="Prefix" />
+			<field name="comOutput" type="list" multiple="true" default="" label="HTML Output">
+				<option value="wrapper">wrapper</option>
+				<option value="container">container</option>
+				<option value="row">row</option>
+				<option value="col">col</option>
+				</field>
+			<field name="columnActive" type="menuitem" multiple="true" label="Deactivate Column" />	
+			<field name="componentActive" type="menuitem" multiple="true" label="Deactivate Component" />
+			<field name="width-component" type="integer" default="0" label="Component width" description="0 - Auto" first="0" last="12" step="1" />
+			<field name="offset-component" type="integer" default="0" label="Offset Component" first="0" last="12" step="1" />				
+			
+			<field type="spacer" name="Top Modules" class="text" label="Top &lt;span&gt;Modules&lt;/span&gt;"/>				
+			<field name="overMain" type="repeatable" icon="list" label="Top Modules" default="{'modnameunderMainArea':['logo','menu','header','top','position-0','position-1','banner'],'colPrefix':['col-sm-','col-sm-','col-sm-','col-sm-','col-sm-','col-sm-','col-sm-'],'modPerRow':['4','4','4','4','4','4','4'],'modCustomCols':['','','','','','',''],'modEqualHeight':['','','','','','',''],'modStyle':['raw','raw','raw','raw','raw','raw','raw'],'modVisions':['','','','','','',''],'modOutput':[['col','row','container'],['col','row','container'],['col','row','container'],['col','row','container'],['col','row','container'],['col','row','container'],['col','row','container']]}" maximum="100">
+				<fieldset hidden="true" repeat="true">
+					<field name="modnameunderMainArea" type="text" default="" label="Position" />
+					<field name="colPrefix" type="modcolprefix" default="col-sm-" label="Prefix" />
+					<field name="modPerRow" type="modPerRow" default="4" label="Modules in a row" />
+					<field name="modCustomCols" type="text" default="" label="Custom Cols" />
+					<field name="modEqualHeight" type="modequalheight" default="" label="Equal Height" />
+					<field name="modStyle" type="modstyle" default="raw" label="Style" />
+					<field name="modVisions" type="modvisions" default="" label="Visibility" />
+					<field name="modOutput" type="modoutput" default="col,row,container" label="HTML Output" />
+				</fieldset>
+			</field>
+
+			<field type="spacer" name="Bottom Modules" class="text" label="Bottom &lt;span&gt;Modules&lt;/span&gt;"/>
+			<field name="underMain" type="repeatable" icon="list" label="Bottom Modules" default="{'modnameunderMainArea':['bottom','footer','copyright'],'colPrefix':['col-sm-','col-sm-','col-sm-'],'modPerRow':['4','4','4'],'modCustomCols':['','',''],'modEqualHeight':['','',''],'modStyle':['raw','raw','raw'],'modVisions':['','',''],'modOutput':[['col','row','container'],['col','row','container'],['col','row','container']]}" maximum="100">
+				<fieldset hidden="true" repeat="true">
+					<field name="modnameunderMainArea" type="text" default="" label="Position" />
+					<field name="colPrefix" type="modcolprefix" default="col-sm-" label="Prefix" />
+					<field name="modPerRow" type="modPerRow" default="4" label="Modules in a row" />
+					<field name="modCustomCols" type="text" default="" label="Custom Cols" />
+					<field name="modEqualHeight" type="modequalheight" default="" label="Equal Height" />
+					<field name="modStyle" type="modstyle" default="raw" label="Style" />
+					<field name="modVisions" type="modvisions" default="" label="Visibility" />	
+					<field name="modOutput" type="modoutput" default="" label="HTML Output" />
+				</fieldset>
+			</field>
+			
+			<field type="spacer" name="Left Modules" class="text" label="Left &lt;span&gt;Modules&lt;/span&gt;"/>
+			<field name="leftCol-module" type="integer" default="3" label="Left col width" first="1" last="12" step="1" />
+			<field name="leftContent" type="repeatable" icon="list" label="Left Modules" default="{'modnameunderMainArea':['left','position-8'],'colPrefix':['col-sm-','col-sm-'],'modPerRow':['1','1'],'modCustomCols':['',''],'modEqualHeight':['',''],'modStyle':['well','well'],'modVisions':['',''],'modOutput':[['col','row'],['col','row']]}" maximum="100">
+				<fieldset hidden="true" repeat="true">
+					<field name="modnameunderMainArea" type="text" default="" label="Position" />
+					<field name="colPrefix" type="modcolprefix" default="col-sm-" label="Prefix" />
+					<field name="modPerRow" type="modPerRow" default="4" label="Modules in a row" />
+					<field name="modCustomCols" type="text" default="" label="Custom Cols" />
+					<field name="modEqualHeight" type="modequalheight" default="" label="Equal Height" />
+					<field name="modStyle" type="modstyle" default="raw" label="Style" />
+					<field name="modVisions" type="modvisions" default="" label="Visibility" />
+					<field name="modOutput" type="modoutput" default="" label="HTML Output" />
+				</fieldset>
+			</field>
+			
+			<field type="spacer" name="Right Modules" class="text" label="Right &lt;span&gt;Modules&lt;/span&gt;"/>
+			<field name="rightCol-module" type="integer" default="3" label="Right col width" first="1" last="12" step="1" />
+			<field name="rightContent" type="repeatable" icon="list" label="Right Modules" default="{'modnameunderMainArea':['right','position-7'],'colPrefix':['col-xs-','col-xs-'],'modPerRow':['1','1'],'modCustomCols':['',''],'modEqualHeight':['',''],'modStyle':['well','well'],'modVisions':['',''],'modOutput':[['col','row'],['col','row']]}" maximum="100">
+				<fieldset hidden="true" repeat="true">
+					<field name="modnameunderMainArea" type="text" default="" label="Position" />
+					<field name="colPrefix" type="modcolprefix" default="col-sm-" label="Prefix" />
+					<field name="modPerRow" type="modPerRow" default="4" label="Modules in a row" />
+					<field name="modCustomCols" type="text" default="" label="Custom Cols" />
+					<field name="modEqualHeight" type="modequalheight" default="" label="Equal Height" />
+					<field name="modStyle" type="modstyle" default="raw" label="Style" />
+					<field name="modVisions" type="modvisions" default="" label="Visibility" />
+					<field name="modOutput" type="modoutput" default="" label="HTML Output" />
+				</fieldset>
+			</field>
+			
+			<field type="spacer" name="Content Top Modules" class="text" label="Content Top &lt;span&gt;Modules&lt;/span&gt;"/>
+			<field name="overContent" type="repeatable" icon="list" label="Content Top Modules" default="{'modnameunderMainArea':['content-top','position-3'],'colPrefix':['col-sm-','col-sm-'],'modPerRow':['2','2'],'modCustomCols':['',''],'modEqualHeight':['',''],'modStyle':['raw','raw'],'modVisions':['',''],'modOutput':[['col','row'],['col','row']]}" maximum="100">
+				<fieldset hidden="true" repeat="true">
+					<field name="modnameunderMainArea" type="text" default="" label="Position" />
+					<field name="colPrefix" type="modcolprefix" default="col-sm-" label="Prefix" />
+					<field name="modPerRow" type="modPerRow" default="4" label="Modules in a row" />
+					<field name="modCustomCols" type="text" default="" label="Custom Cols" />
+					<field name="modEqualHeight" type="modequalheight" default="" label="Equal Height" />
+					<field name="modStyle" type="modstyle" default="raw" label="Style" />
+					<field name="modVisions" type="modvisions" default="" label="Visibility" />	
+					<field name="modOutput" type="modoutput" default="" label="HTML Output" />
+				</fieldset>
+			</field>
+			
+			<field type="spacer" name="Content Bottom Modules" class="text" label="Content Bottom &lt;span&gt;Modules&lt;/span&gt;"/>
+			<field name="underContent" type="repeatable" icon="list" label="Content Bottom Modules" default="{'modnameunderMainArea':['content-bottom','position-2'],'colPrefix':['col-sm-','col-sm-'],'modPerRow':['2','2'],'modCustomCols':['',''],'modEqualHeight':['','eqheight'],'modStyle':['raw','raw'],'modVisions':['',''],'modOutput':[['col','row'],['col','row']]}" maximum="100">
+				<fieldset hidden="true" repeat="true">
+					<field name="modnameunderMainArea" type="text" default="" label="Position" />
+					<field name="colPrefix" type="modcolprefix" default="col-sm-" label="Prefix" />
+					<field name="modPerRow" type="modPerRow" default="4" label="Modules in a row" />
+					<field name="modCustomCols" type="text" default="" label="Custom Cols" />
+					<field name="modEqualHeight" type="modequalheight" default="" label="Equal Height" />
+					<field name="modStyle" type="modstyle" default="raw" label="Style" />
+					<field name="modVisions" type="modvisions" default="" label="Visibility" />
+					<field name="modOutput" type="modoutput" default="" label="HTML Output" />
+				</fieldset>
+			</field>
+			<field type="spacer" name="AddiSettings" class="text" label="Additional &lt;span&gt;Settings&lt;/span&gt;"/>
+			<field name="showModulePositions" type="radio" class="btn-group" default="0" label="Show Module Positions">
+				<option value="1">Enabled</option>
+				<option value="0">Disabled</option>
+				</field>
+		</fieldset>
+
+				
+		<fieldset name="FIXES_OPTIMIZATION">
+			<field type="spacer" name="Favicon" class="text" label="Browser  &lt;span&gt;Settings&lt;/span&gt;"/>	
+			<field name="favicon-generalSettings" type="media" label="Favicon" description="16x16 Pixel" directory="" />
+			<field name="appletouch-generalSettings" type="media" label="Apple Touch Icon" description="152x152 Pixel" directory="" />
+			<field name="jooagMetaXua" type="radio" class="btn-group" default="1" label="X-UA-Compatible Tag" >
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+				</field>
+			
+			<field type="spacer" name="Expert Area" class="text" label="Deactivate  &lt;span&gt;CSS and JS&lt;/span&gt;"/>
+			<field name="unsetJs" type="list" multiple="true" default="" label="Deactivate Joomla Javascript">
+				<option value="/media/system/js/mootools-core.js">mootools-core.js</option>
+				<option value="/media/system/js/mootools-more.js">mootools-more.js</option>
+				<option value="/media/system/js/modal.js">modal.js</option>
+				<option value="/media/system/js/core.js">core.js</option>
+				<option value="/media/jui/js/jquery-migrate.min.js">jquery-migrate.min.js</option>
+				<option value="/media/system/js/caption.js">caption.js</option>
+				</field>
+				
+			<field type="spacer" name="Responsive Area" class="text" label="Responive &lt;span&gt;Settings&lt;/span&gt;"/>
+			<field name="responsiveMode" type="radio" class="btn-group" default="1" label="Responsive" description="Set Container Width and Col Prefix to col-xs-xx">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+				</field>
+			<field name="containerWidth" showon="responsiveMode:0" type="text" default="1000px" label="Container Width" size="40"  filter="raw" />	
+			
+			<field type="spacer" name="CSS Area" class="text" label="CSS &lt;span&gt;Settings&lt;/span&gt;"/>
+			<field name="loadBootstrapCss-fixes" type="filelist" default="bootstrap.min.css" label="Load Bootstrap CSS" directory="templates/joomla_agency3x/workframe/bootstrap3/css" filter="" exclude="\.map$|theme" stripext="" />
+			<field name="loadBootstrapTheme-fixes" type="filelist" default="" label="Load Bootstrap Theme CSS" directory="templates/joomla_agency3x/workframe/bootstrap3/css" filter="theme" exclude="\.map$" stripext="" />
+			<field name="bootswatch" type="filelist" default="" label="Select a Bootswatch Theme" directory="templates/joomla_agency3x/workframe/bootswatch" filter="" exclude="" stripext="" />	
+			<field type="spacer" name="Body Classes" class="text" label="CSS Classes in  &lt;span&gt;Body&lt;/span&gt;"/>	
+			<field name="componentClassSuffix-fixes" type="list" multiple="true" default="component,menuid,menualias,column,logged" label="Additional PageClass Suffix">
+				<option value="component">Component</option>
+				<option value="pageid">Page ID</option>
+				<option value="menuid">Menu ID</option>
+				<option value="menualias">Menu alias</option>
+				<option value="column">Left or Right or Both Modules</option>
+				<option value="logged">Logged in out</option>
+				<option value="language">Language</option>
+				<option value="ltrrtl">LTR or RTL</option>
+				</field>
+				
+			<field type="spacer" name="OptinalSettings" class="text" label="Optional &lt;span&gt;Settings&lt;/span&gt;"/>	
+			<field name="jooagSetGenerator" type="radio" class="btn-group" default="1" label="Joomla Generator">
+				<option value="1">Default</option>
+				<option value="2">Custom</option>
+				<option value="0">No</option>
+				</field>
+			<field name="jooagSetGeneratorCustom" type="text" default="My custom generator tag!" showon="jooagSetGenerator:2" label="Custom Generator" />
+			<field type="spacer" name="Analytics Area" class="text" label="Analytics &lt;span&gt;Code&lt;/span&gt;"/>
+			<field name="googleAnalytics" type="textarea" default="" label="Google Analytics Code" rows="4" cols="40" filter="raw" />	
+			<field name="piwik" type="textarea" default="" label="Piwik Code" rows="4" cols="40" filter="raw" />
+			<field type="spacer" name="Verfications Area" class="text" label="Verfications &lt;span&gt;Code&lt;/span&gt;"/>
+			<field name="googleVerification" type="text" default="" label="Google Webmaster Tools" size="80"  filter="raw" />
+			<field type="spacer" name="Fonts Area" class="text" label="Google &lt;span&gt;Fonts&lt;/span&gt;"/>
+			<field name="googlefonts" type="repeatable" icon="list" label="Google Fonts" default="" maximum="100">
+				<fieldset hidden="true" repeat="true">
+					<field name="gfmenu" type="menuitem" multiple="true" label="Restrict to:" />
+					<field name="gflink" type="text" label="Google Fonts Link" />
+				</fieldset>
+			</field>
+			<field type="spacer" name="Seohreflang" class="text" label="HrefLang &lt;span&gt;Tag - Attention&lt;/span&gt;"/>	
+			<field name="setHrefLang" type="radio" class="btn-group" default="0" label="Set hreflang" description="Use it only if you use a single Language Site!">
+				<option value="0">Disabled</option>
+				<option value="1">Enabled</option>
+				</field>
+		</fieldset>	
+
+		<fieldset name="ADDONS">			
+			<field type="spacer" name="Addons1" class="text" label="Equal &lt;span&gt;Height&lt;/span&gt;" />
+			<field name="eqheight" type="radio" class="btn-group" default="0" label="eqHeight">
+				<option value="1">Enabled</option>
+				<option value="0">Disabled</option>
+				</field>
+			<field name="eqheight-menu" type="menuitem" multiple="true" label="Restrict to:" />
+				
+			<field type="spacer" name="Addons2" class="text" label="Instant &lt;span&gt;Click&lt;/span&gt;" />
+			<field name="instantclick" type="radio" class="btn-group" default="0" label="InstantClick">
+				<option value="1">Enabled</option>
+				<option value="0">Disabled</option>
+				</field>
+			<field name="instantclick-menu" type="menuitem" multiple="true" label="Restrict to:" />	
+			
+			<field type="spacer" name="Addons3" class="text" label="Masonry &lt;span&gt;Grid&lt;/span&gt;" />	
+			<field name="masonry" type="radio" class="btn-group" default="0" label="Masonry">
+				<option value="1">Enabled</option>
+				<option value="0">Disabled</option>
+				</field>
+			<field name="masonry-menu" type="menuitem" multiple="true" label="Restrict to:" />
+			
+			<field type="spacer" name="Addons4" class="text" label="Font&lt;span&gt;Awesome&lt;/span&gt;" />
+			<field name="fontawesome" type="radio" class="btn-group" default="0" label="FontAwesome">
+				<option value="1">Enabled</option>
+				<option value="0">Disabled</option>
+				</field>
+			<field name="fontawesome-menu" type="menuitem" multiple="true" label="Restrict to:" />
+			<field name="loadFontAwesome-fixes" type="filelist" default="" label="Load FontAwesome" directory="templates/joomla_agency3x/workframe/fontawesome/css" filter="" exclude="" stripext="" />	
+			<field type="spacer" name="Addons5" class="text" label="Counter &lt;span&gt;Up&lt;/span&gt;" />	
+			<field name="counterup" type="radio" class="btn-group" default="0" label="Counter Up">
+				<option value="1">Enabled</option>
+				<option value="0">Disabled</option>
+				</field>
+			<field name="counterup-menu" type="menuitem" multiple="true" label="Restrict to:" />
+		</fieldset>
+		
+		<fieldset name="EXPERIMENTAL_TEMPLATE_FUNCTIONS">			
+			<field name="debugmode" type="radio" class="btn-group" default="0" label="Debug Mode">
+				<option value="1">Enabled</option>
+				<option value="0">Disabled</option>
+				</field>
+			<field name="tutorialMode" type="radio" class="btn-group" default="0" label="Tutorial Mode">
+				<option value="1">Enabled</option>
+				<option value="0">Disabled</option>
+				</field>
+		</fieldset>
+	</fields>
+</config>
+		
+</extension> 
