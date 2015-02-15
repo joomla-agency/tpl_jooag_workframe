@@ -22,7 +22,7 @@ function executeAddon($functionName){
 	$menus = JFactory::getApplication()->getMenu();
 	$menu  = $menus->getActive();
 	$directory = JURI::base().'templates/'.$doc->template.'/workframe/'.$functionName.'/';
-	if((in_array($menu->id, (array)$doc->params->get("$xmlName")) or empty($doc->params->get("$xmlName"))) and $doc->params->get("$functionName")){
+	if((in_array($menu->id, (array)$doc->params->get("$xmlName")) or !$doc->params->get("$xmlName")) and $doc->params->get("$functionName")){
 		$functionName($doc, $directory);
 	}
 }
@@ -33,14 +33,12 @@ function masonry($doc, $directory){
 	$doc->addScriptDeclaration('$(function(){$("#itemListLeading").masonry({itemSelector : ".col-md-4" });});');
 }
 executeAddon('masonry');
-
 //Addons::eqHeight
 function eqheight($doc, $directory){
 	$doc->addScript($directory.'jquery.eqheight.js');
 	$doc->addScriptDeclaration( 'jQuery(document).ready(function(){jQuery(".eqheight").eqHeight();});' );
 }
 executeAddon('eqheight');
-
 //Addons::InstantClick
 function instantclick($doc, $directory){
 	$doc->addScript($directory.'instantclick.min.js');
@@ -57,11 +55,15 @@ function counterup($doc, $directory){
 	$doc->addScript($directory.'jquery.counterup.min.js');
 	$doc->addScript($directory.'waypoint.js');
 	$doc->addScriptDeclaration( 'jQuery(document).ready(function(){$(".counter").counterUp({delay: 10, time: 3000});});' );
-	
 }
 executeAddon('counterup');
+//Addons::Parallax
+function parallax($doc, $directory){
+	$doc->addScript($directory.'parallax.min.js');
+	$doc->addScriptDeclaration( 'jQuery(".wrapper-mod-id-210").parallax({imageSrc: "'.JURI::base().'templates/joomla_agency3x/img/stars.jpg"});' );
+}
+executeAddon('parallax');
 //Addons::End
-
 
 //CSS
 if($doc->params->get('loadBootstrapCss-fixes') and $doc->params->get('loadBootstrapCss-fixes') != '-1'){
@@ -91,7 +93,7 @@ if($doc->params->get('googlefonts')){
 
 	$gfkey = 0;
 	foreach($gf['gflink'] as $fonts){
-		if(in_array($menu, (array)$gf['gfmenu']["$gfkey"]) or empty($gf['gfmenu']["$gfkey"])){
+		if(in_array($menu, (array)$gf['gfmenu']["$gfkey"]) or !$gf['gfmenu']["$gfkey"]){
 			$doc->addStyleSheet($fonts);
 		}
 		$gfkey++;
@@ -114,12 +116,12 @@ function modules($renderPosition){
 	}
 	$key = '0';
 	$modVisions = '';
-	if(!empty($md['modVisions'][$key])){
+	if($md['modVisions'][$key]){
 		$modVisions = implode(' ',$md['modVisions'][$key]);
 	}
 	foreach($md['modnameunderMainArea'] as $position){
 		
-		if(empty($md['modOutput'][$key])){ $md['modOutput'][$key][0] = 'empty';}
+		if(!$md['modOutput'][$key]){ $md['modOutput'][$key][0] = 'empty';}
 		
 		$divCount = 0;
 		$modWrapperEach = 0;
@@ -235,7 +237,7 @@ function jooagPageClass(){
 	
 	if (in_array("menualias", (array)$suffixSettings)){
 		
-		if(!empty($getMenu->getActive()->alias)){
+		if($getMenu->getActive()->alias){
 			echo 'subpage-'.$getMenu->getActive()->alias.' ';
 			echo 'page-'.$getMenu->getItem($getMenu->getActive()->tree[0])->alias.' ';
 		}
