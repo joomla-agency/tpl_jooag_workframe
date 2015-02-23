@@ -15,9 +15,11 @@ require_once __DIR__ . '/workframe/workframe.php';
 require_once __DIR__ . '/workframe/workframe-tutorial.php';
 ?>
 <!doctype html>
+<html xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" >
 	<head>		
 		<jdoc:include type="head" />
 		<?php
+		jooagHead();
 		jooagJS('top');
 		?>	
 	</head>
