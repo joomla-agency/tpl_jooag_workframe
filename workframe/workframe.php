@@ -283,31 +283,41 @@ foreach((array)$unsetjs as $js){
 	unset( $doc->_scripts[JURI::base( true ).$js] );
 }
 
-//Favicon
-if(!$doc->params->get('favicon-generalSettings')){
-	echo '<link rel="shortcut icon" href="'.JURI::base().'templates/'.$doc->template.'/'.'workframe/workframe/favicon.png">';
-}else{
-	echo '<link rel="shortcut icon" href="'.$doc->params->get('favicon-generalSettings').'">';
+//Additional Head
+jooagHead(){
+	$doc = JFactory::getDocument();
+	//Favicon
+	if(!$doc->params->get('favicon-generalSettings')){
+		echo '<link rel="shortcut icon" href="'.JURI::base().'templates/'.$doc->template.'/'.'workframe/workframe/favicon.png">';
+	}else{
+		echo '<link rel="shortcut icon" href="'.$doc->params->get('favicon-generalSettings').'">';
+	}
+	
+	//Apple Favicon
+	if(!$doc->params->get('appletouch-generalSettings')){
+		echo '<link rel="apple-touch-icon" href="'.JURI::base().'templates/'.$doc->template.'/'.'workframe/workframe/apple-touch-icon-precomposed.png">';
+	}else{
+		echo '<link rel="apple-touch-icon" href="'.$doc->params->get('appletouch-generalSettings').'">';
+	}
+	
+	//IE Fix
+	if($doc->params->get('jooagMetaXua')== '1'){
+		echo '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />';
+	}
+	
+	//Generator Tag
+	if($doc->params->get('jooagSetGenerator') == '0'){
+		$doc->setGenerator(null);
+	}
+	if($doc->params->get('jooagSetGenerator') == '2'){
+		$doc->setGenerator($doc->params->get('jooagSetGeneratorCustom'));
+	}
 }
 
-//Apple Favicon
-if(!$doc->params->get('appletouch-generalSettings')){
-	echo '<link rel="apple-touch-icon" href="'.JURI::base().'templates/'.$doc->template.'/'.'workframe/workframe/apple-touch-icon-precomposed.png">';
-}else{
-	echo '<link rel="apple-touch-icon" href="'.$doc->params->get('appletouch-generalSettings').'">';
-}
-
-//IE Fix
-if($doc->params->get('jooagMetaXua')== '1'){
-	echo '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />';
-}
-
-//Generator Tag
-if($doc->params->get('jooagSetGenerator') == '0'){
-	$doc->setGenerator(null);
-}
-if($doc->params->get('jooagSetGenerator') == '2'){
-	$doc->setGenerator($doc->params->get('jooagSetGeneratorCustom'));
+// Responsive Mode
+if($doc->params->get('responsiveMode') == 0){
+	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+	$doc->addStyleDeclaration( '.container{width:'.$doc->params->get("containerWidth").';}' );
 }
 
 //Javascript injection
@@ -323,12 +333,6 @@ function jooagJS($position){
 		echo $doc->params->get('piwik');
 		echo $doc->params->get('googleVerification');
 	}
-}
-
-// Responsive Mode
-if($doc->params->get('responsiveMode') == 0){
-	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
-	$doc->addStyleDeclaration( '.container{width:'.$doc->params->get("containerWidth").';}' );
 }
 
 //Set Href Lang for single Language Sites
