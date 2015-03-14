@@ -19,10 +19,15 @@ $templateDir = $doc->baseurl.'/templates/'.$doc->template;
 function executeAddon($functionName){
 	$doc = JFactory::getDocument();
 	$xmlName = $functionName.'-menu';
-	$menus = JFactory::getApplication()->getMenu();
-	$menu  = $menus->getActive();
+	
+	if(JFactory::getApplication()->getMenu()->getActive()){
+		$menu = JFactory::getApplication()->getMenu()->getActive()->id;
+	}else{
+		$menu = '';
+	}
+	
 	$directory = JURI::base().'templates/'.$doc->template.'/workframe/'.$functionName.'/';
-	if((in_array($menu->id, (array)$doc->params->get("$xmlName")) or !$doc->params->get("$xmlName")) and $doc->params->get("$functionName")){
+	if((in_array($menu, (array)$doc->params->get("$xmlName")) or !$doc->params->get("$xmlName")) and $doc->params->get("$functionName")){
 		$functionName($doc, $directory);
 	}
 }
@@ -86,8 +91,11 @@ JHtml::_('jquery.framework');
 JHtml::_('bootstrap.framework');
 
 if($doc->params->get('googlefonts')){
-	$menus = JFactory::getApplication()->getMenu();
-	$menu = $menus->getActive()->id;
+	if(JFactory::getApplication()->getMenu()->getActive()){
+		$menu = JFactory::getApplication()->getMenu()->getActive()->id;
+	}else{
+		$menu = '';
+	}
 	
 	$gf = json_decode($doc->params->get('googlefonts'), true);
 
@@ -195,8 +203,13 @@ function column(){
 	}
 
 	$key = '0';
-	$menus = JFactory::getApplication()->getMenu();
-	$menu = $menus->getActive()->id;
+	
+	if(JFactory::getApplication()->getMenu()->getActive()){
+		$menu = JFactory::getApplication()->getMenu()->getActive()->id;
+	}else{
+		$menu = '';
+	}
+	
 	if(!in_array($menu, (array)$doc->params->get('columnActive'))){
 		if(in_array('wrapper', $comOutput)){ echo '<div class="wrapper wrapper-column">'; }
 			if(in_array('container', $comOutput)){ echo '<div class="container container-column">';}
@@ -284,7 +297,7 @@ foreach((array)$unsetjs as $js){
 }
 
 //Additional Head
-jooagHead(){
+function jooagHead(){
 	$doc = JFactory::getDocument();
 	//Favicon
 	if(!$doc->params->get('favicon-generalSettings')){
@@ -292,19 +305,19 @@ jooagHead(){
 	}else{
 		echo '<link rel="shortcut icon" href="'.$doc->params->get('favicon-generalSettings').'">';
 	}
-	
+
 	//Apple Favicon
 	if(!$doc->params->get('appletouch-generalSettings')){
 		echo '<link rel="apple-touch-icon" href="'.JURI::base().'templates/'.$doc->template.'/'.'workframe/workframe/apple-touch-icon-precomposed.png">';
 	}else{
 		echo '<link rel="apple-touch-icon" href="'.$doc->params->get('appletouch-generalSettings').'">';
 	}
-	
+
 	//IE Fix
 	if($doc->params->get('jooagMetaXua')== '1'){
 		echo '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />';
 	}
-	
+
 	//Generator Tag
 	if($doc->params->get('jooagSetGenerator') == '0'){
 		$doc->setGenerator(null);
@@ -312,14 +325,14 @@ jooagHead(){
 	if($doc->params->get('jooagSetGenerator') == '2'){
 		$doc->setGenerator($doc->params->get('jooagSetGeneratorCustom'));
 	}
-}
 
-// Responsive Mode
-if($doc->params->get('responsiveMode') == 0){
-	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
-	$doc->addStyleDeclaration( '.container{width:'.$doc->params->get("containerWidth").';}' );
+	// Responsive Mode
+	if($doc->params->get('responsiveMode') == 0){
+		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+		$doc->addStyleDeclaration( '.container{width:'.$doc->params->get("containerWidth").';}' );
+	}
 }
-
+	
 //Javascript injection
 function jooagJS($position){
 	$doc = JFactory::getDocument();
@@ -334,6 +347,8 @@ function jooagJS($position){
 		echo $doc->params->get('googleVerification');
 	}
 }
+
+
 
 //Set Href Lang for single Language Sites
 if($doc->params->get('setHrefLang')){
